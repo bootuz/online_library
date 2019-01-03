@@ -11,10 +11,8 @@ from .models import Book, Author
 
 def index(request):
     new_books = Book.objects.filter(date__gte=timezone.now() - datetime.timedelta(days=15))
-    one_book = Book.objects.get(pk=3)
     context = {
         'new_books': new_books,
-        'one_book': one_book,
     }
     return render(request, 'books/index.html', context)
 
