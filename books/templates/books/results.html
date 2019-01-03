@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if results %}
+    {% for book in results %}
+        <p>{{ book.title }}</p>
+        {% for author in book.writer.all %}
+            <p>{{ author }}</p>
+        {% endfor %}
+        <p>{{ book.published }}</p>
+    {% endfor %}
+
+    <p>{{ q }}</p>
+    <p>{{ count }}</p>
+
+{% elif results == None %}
+    <p>Specify your search term</p>
+{% else %}
+    {{ q }}
+    <p>Nothing found</p>
+{% endif %}
+</body>
+</html>
