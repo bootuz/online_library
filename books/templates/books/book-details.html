@@ -1,5 +1,8 @@
 {% extends 'books/base.html' %}
 {% load staticfiles %}
+{% block title %}
+    {{ book.title }}
+{% endblock %}
 {% block content %}
     <body class="product-page sidebar-collapse">
     <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% static 'img/book.jpg' %}');">
