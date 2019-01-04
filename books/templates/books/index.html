@@ -31,7 +31,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card card-product">
                   <div class="card-header card-header-image">
-                    <a href="#pablo">
+                    <a href="{% url 'books:book-details' new_book.slug %}">
                       <img class="img" src="{{ new_book.cover.url }}">
                     </a>
                   </div>
