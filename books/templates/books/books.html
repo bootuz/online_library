@@ -34,7 +34,7 @@
                   <div class="card-body">
                     <h6 class="card-category text-success">{{ book.genre }}</h6>
                     <h4 class="card-title">
-                      <a href="#pablo">{{ book.title }}</a>
+                      <a href=" {% url 'books:book-details' book.slug %}">{{ book.title }}</a>
                     </h4>
                     <div class="card-description">
                       {% for author in book.writer.all %}
