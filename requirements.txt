@@ -1,2 +1,6 @@
 Django==2.1.4
 pytz==2018.7
+Django==2.1.4
+django-cleanup==3.0.1
+python-dotenv==0.10.1
+pytz==2018.7

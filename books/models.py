@@ -1,4 +1,5 @@
 from django.db import models
+from .helper import rename_and_path
 
 
 class Author(models.Model):
@@ -47,9 +48,9 @@ class Publisher(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=150, verbose_name='Book title')
     slug = models.SlugField(unique=True, max_length=100, verbose_name='URL')
-    cover = models.FileField(upload_to='covers', blank=True, verbose_name='Cover')
-    e_pub = models.FileField(upload_to='epub', blank=True, verbose_name='EPUB')
-    pdf = models.FileField(upload_to='pdf', blank=True, verbose_name='PDF')
+    cover = models.FileField(upload_to=rename_and_path, blank=True, verbose_name='Cover')
+    e_pub = models.FileField(upload_to=rename_and_path, blank=True, verbose_name='EPUB')
+    pdf = models.FileField(upload_to=rename_and_path, blank=True, verbose_name='PDF')
     isbn = models.CharField(max_length=100, blank=True, verbose_name='ISBN')
     annotation = models.TextField(default='', blank=True, verbose_name='Annotation')
     published = models.DateField(blank=True, verbose_name='Book publication date')

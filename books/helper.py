@@ -7,3 +7,7 @@ def replacer(string, char='ӏ', to_be_replaced='iIlL1|'):
         if i in string:
             string = string.replace(i, char)
     return string
+
+
+def rename_and_path(instance, filename):
+    return f'books/{instance.slug.replace("-", "_")}/{filename}'
