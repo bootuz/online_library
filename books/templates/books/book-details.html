@@ -55,7 +55,7 @@
                           {% if book.isbn %}
                               {{ book.isbn }}
                           {% else %}
-                              No information
+                              ISBN: No information
                           {% endif %}
                       </li>
                       <li>{{ book.published.isoformat }}</li>
@@ -63,11 +63,9 @@
                           {% if book.publisher %}
                               {{ book.publisher }}
                           {% else %}
-                              No information
+                              Publisher: No information
                           {% endif %}
                       </li>
-                      <li></li>
-                      <li>Dry clean</li>
                     </ul>
                   </div>
                 </div>
