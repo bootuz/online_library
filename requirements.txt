@@ -1,10 +1,4 @@
-Django==2.1.4
 pytz==2018.7
-<<<<<<< HEAD
-python-dotenv
-=======
 Django==2.1.4
 django-cleanup==3.0.1
 python-dotenv==0.10.1
-pytz==2018.7
->>>>>>> d6076d9... Changed the path of uploaded files, and installed an app which deletes unused media files
