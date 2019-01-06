@@ -1,6 +1,12 @@
 .idea/
 __pycache__/
 venv/
+<<<<<<< HEAD
 .env/
 books/__pycache__/
 
+=======
+library/__pycache__/
+books/__pycache__/
+db.sqlite3
+>>>>>>> d6076d9... Changed the path of uploaded files, and installed an app which deletes unused media files
