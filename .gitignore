@@ -4,3 +4,4 @@ venv/
 library/__pycache__/
 books/__pycache__/
 db.sqlite3
+media/
