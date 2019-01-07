@@ -1,7 +1,8 @@
 .idea/
 __pycache__/
 venv/
-library/__pycache__/
+.env/
 books/__pycache__/
+library/__pycache__/
 db.sqlite3
 media/
