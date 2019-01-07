@@ -1,5 +1,17 @@
+import os
+
 from django.db import models
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from .helper import rename_and_path
+
+
+class OverwriteStorage(FileSystemStorage):
+
+    def get_available_name(self, name, max_length):
+        if self.exists(name):
+            os.remove(os.path.join(settings.MEDIA_ROOT, name))
+        return name
 
 
 class Author(models.Model):
@@ -48,9 +60,9 @@ class Publisher(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=150, verbose_name='Book title')
     slug = models.SlugField(unique=True, max_length=100, verbose_name='URL')
-    cover = models.FileField(upload_to=rename_and_path, blank=True, verbose_name='Cover')
-    e_pub = models.FileField(upload_to=rename_and_path, blank=True, verbose_name='EPUB')
-    pdf = models.FileField(upload_to=rename_and_path, blank=True, verbose_name='PDF')
+    cover = models.FileField(upload_to=rename_and_path, blank=True, storage=OverwriteStorage(), verbose_name='Cover')
+    e_pub = models.FileField(upload_to=rename_and_path, blank=True, storage=OverwriteStorage(), verbose_name='EPUB')
+    pdf = models.FileField(upload_to=rename_and_path, blank=True, storage=OverwriteStorage(), verbose_name='PDF')
     isbn = models.CharField(max_length=100, blank=True, verbose_name='ISBN')
     annotation = models.TextField(default='', blank=True, verbose_name='Annotation')
     published = models.DateField(blank=True, verbose_name='Book publication date')
