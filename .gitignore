@@ -6,3 +6,5 @@ books/__pycache__/
 library/__pycache__/
 db.sqlite3
 media/
+static/
+books/migrations
