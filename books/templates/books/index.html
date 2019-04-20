@@ -34,14 +34,14 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card card-product">
                   <div class="card-header card-header-image">
-                    <a href="{% url 'books:book-details' new_book.slug %}">
+                    <a href="{% url 'books:book' new_book.slug %}">
                       <img class="img" src="{{ new_book.cover.url }}">
                     </a>
                   </div>
                   <div class="card-body">
                     <h6 class="card-category text-success">{{ new_book.genre }}</h6>
                     <h4 class="card-title">
-                      <a href="{% url 'books:book-details' new_book.slug %}">{{ new_book.title }}</a>
+                      <a href="{% url 'books:book' new_book.slug %}">{{ new_book.title }}</a>
                     </h4>
                     <div class="card-description">
                       {% for author in new_book.writer.all %}

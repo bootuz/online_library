@@ -50,7 +50,7 @@ def authors(request):
     return render(request, 'books/authors.html', context)
 
 
-def book_details(request, slug):
+def book(request, slug):
     try:
         book = get_object_or_404(Book, slug=slug)
         context = {
@@ -58,7 +58,7 @@ def book_details(request, slug):
         }
     except Book.DoesNotExist:
         raise Http404()
-    return render(request, 'books/book-details.html', context)
+    return render(request, 'books/book.html', context)
 
 
 # Error handlers
