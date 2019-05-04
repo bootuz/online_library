@@ -42,7 +42,7 @@ def search(request):
 
 
 def authors(request):
-    all_authors = Author.objects.all()
+    all_authors = Author.objects.all().order_by('name')
 
     context = {
         'all_authors': all_authors,
@@ -50,14 +50,20 @@ def authors(request):
     return render(request, 'books/authors.html', context)
 
 
+def author(request, slug):
+    one_author = get_object_or_404(Author, slug=slug)
+
+    context = {
+        'author': one_author
+    }
+    return render(request, 'books/author.html', context)
+
+
 def book(request, slug):
-    try:
-        book = get_object_or_404(Book, slug=slug)
-        context = {
-            'book': book,
-        }
-    except Book.DoesNotExist:
-        raise Http404()
+    one_book = get_object_or_404(Book, slug=slug)
+    context = {
+        'book': one_book,
+    }
     return render(request, 'books/book.html', context)
 
 
@@ -72,4 +78,3 @@ def handler500(request):
     response = render(request, 'books/500.html')
     response.status_code = 500
     return response
-

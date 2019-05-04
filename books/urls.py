@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('books/', views.books, name='books'),
     path('authors/', views.authors, name='authors'),
+    path('author/<slug:slug>', views.author, name='author'),
     path('book/<slug:slug>', views.book, name='book'),
     path('search/', views.search, name='search'),
     path('404/', views.handler404, name='error')
