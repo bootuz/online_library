@@ -7,24 +7,34 @@
     <body class="product-page sidebar-collapse">
     <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% static 'img/book.jpg' %}');">
         <div class="container">
-      <div class="row title-row">
-        <div class="col-md-3 ml-auto">
-            <form action="{% url 'books:search' %}">
-            <div class="input-group has-white">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons" style="color: white">search</i>
-                  </span>
-                </div>
-                
-                <input name="q" type="search" class="form-control" placeholder="Search here">
+          <div class="row title-row">
+            <div class="col-md-4 ml-auto">
+              <button class="btn btn-white float-right" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">search</i>Search<div class="ripple-container"></div></button>
             </div>
-            </form>
+          </div>
         </div>
-      </div>
     </div>
-    </div>
-  <div class="section">
+      <div class="section">
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <form action="{% url 'books:search' %}">
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">search</i>
+                          </span>
+                        </div>
+
+                            <input name="q" type="search" class="form-control" placeholder="Search here">
+                        </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+          </div>
     <div class="container">
       <div class="main main-raised main-product">
         <div class="row">
