@@ -8,3 +8,4 @@ db.sqlite3
 media/
 static/
 books/migrations
+books/__init__.py
