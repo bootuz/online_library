@@ -84,17 +84,17 @@
                     <ul>
                       <li>
                           {% if book.isbn %}
-                              {{ book.isbn }}
+                              ISBN: {{ book.isbn }}
                           {% else %}
                               ISBN: No information
                           {% endif %}
                       </li>
-                      <li>{{ book.published.isoformat }}</li>
+                      <li>Къыщыдэкӏар: {{ book.published|date:"d-m-Y" }} гъ.</li>
                       <li>
                           {% if book.publisher %}
-                              {{ book.publisher }}
+                              Тхылъ тедзапӏэр: {{ book.publisher }}
                           {% else %}
-                              Publisher: No information
+                              Тхылъ тедзапӏэр: No information
                           {% endif %}
                       </li>
                     </ul>

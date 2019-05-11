@@ -23,15 +23,16 @@
         <div class="row">
         {% if all_authors %}
             {% for author in all_authors %}
-            <div class="col-lg-3 col-md-6">
-                <h4 class="card-title">
-                  <a href=" {% url 'books:author' author.slug %}">{{ author.name }}</a>
-                </h4>
-            </div>
+                <div class="text-center" style="width: 19rem; margin: 5px">
+                <img height="150px" width="150px" style="border-radius: 50%; margin: 10px auto;" src="{% static 'img/faces/kendall.jpg' %}" alt="Card image cap">
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      <a href=" {% url 'books:author' author.slug %}">{{ author.name }}</a>
+                    </h4>
+                  </div>
+                </div>
             {% endfor %}
         {% endif %}
-
-
         </div>
       </div>
     </div>
