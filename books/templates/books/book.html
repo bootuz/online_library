@@ -103,12 +103,12 @@
               </div>
             </div>
 
-            <div class="row pull-right">
+            <div class="row pull-right" style="margin-top: 10px;">
                 {% if book.e_pub %}
-                    <a href="{{ book.e_pub.url }}" class="btn btn-success btn-round">EPUB</a>
+                    <a href="{{ book.e_pub.url }}" class="btn btn-info btn-round">EPUB</a>
                 {% endif %}
                 {% if book.pdf %}
-                    <a href="{{ book.pdf.url }}" target="_blank" class="btn btn-success btn-round" download>PDF</a>
+                    <a href="{{ book.pdf.url }}" target="_blank" class="btn btn-info btn-round" download>PDF</a>
                 {% endif %}
             </div>
           </div>
