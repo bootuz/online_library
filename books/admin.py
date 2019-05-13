@@ -5,12 +5,13 @@ from .models import Author, Book, Genre, Publisher
 class BookAdmin(admin.ModelAdmin):
     search_fields = ['title']
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ['title', 'published', 'date']
+    list_display = ['title', 'date', 'publisher', 'genre', 'isbn']
     filter_horizontal = ['writer']
     autocomplete_fields = ['publisher', 'genre']
 
 
 class AuthorAdmin(admin.ModelAdmin):
+    list_display = ['name', 'photo', 'born_date', 'death_date']
     prepopulated_fields = {'slug': ('name',)}
 
 
