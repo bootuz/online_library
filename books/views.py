@@ -51,15 +51,18 @@ def authors(request):
 
 def author(request, slug):
     one_author = get_object_or_404(Author, slug=slug)
+    books_of_author = Book.objects.filter(writer=one_author)
 
     context = {
-        'author': one_author
+        'author': one_author,
+        'books_of_author': books_of_author
     }
     return render(request, 'books/author.html', context)
 
 
 def book(request, slug):
     one_book = get_object_or_404(Book, slug=slug)
+
     context = {
         'book': one_book,
     }
