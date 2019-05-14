@@ -25,7 +25,7 @@
             {% for author in all_authors %}
                 <div class="text-center" style="width: 17rem; margin: 5px">
                 {% if author.photo %}
-                <img height="150px" width="150px" style="border-radius: 50%; margin: 10px auto;" src="{{ author.photo.url }}" alt="Card image cap">
+                <img class="img-raised rounded-circle img-fluid" height="150px" width="150px" style="margin: 10px auto;" src="{{ author.photo.url }}" alt="Card image cap">
                     {% else %}
                     <img height="150px" width="150px" style="border-radius: 50%; margin: 10px auto;" src="{% static 'img/faces/headshot-placeholder.png' %}" alt="Card image cap">
                     {% endif %}
