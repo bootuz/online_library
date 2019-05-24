@@ -21,22 +21,22 @@
     <div class="section">
       <div class="container">
         <div class="row">
-        {% if all_authors %}
-            {% for author in all_authors %}
-                <div class="text-center" style="width: 17rem; margin: 5px">
-                {% if author.photo %}
-                <img class="img-raised rounded-circle img-fluid" height="150px" width="150px" style="margin: 10px auto;" src="{{ author.photo.url }}" alt="Card image cap">
-                    {% else %}
-                    <img height="150px" width="150px" style="border-radius: 50%; margin: 10px auto;" src="{% static 'img/faces/headshot-placeholder.png' %}" alt="Card image cap">
-                    {% endif %}
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href=" {% url 'books:author' author.slug %}">{{ author.name }}</a>
-                    </h4>
-                  </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+            {% if all_authors %}
+                {% for author in all_authors %}
+                    <div class="text-center" style="width: 17rem; margin: 5px">
+                    {% if author.photo %}
+                    <img class="img-raised rounded-circle img-fluid" height="150px" width="150px" style="margin: 10px auto;" src="{{ author.photo.url }}" alt="Card image cap">
+                        {% else %}
+                        <img height="150px" width="150px" style="border-radius: 50%; margin: 10px auto;" src="{% static 'img/faces/headshot-placeholder.png' %}" alt="Card image cap">
+                        {% endif %}
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <a href=" {% url 'books:author' author.slug %}">{{ author.name }}</a>
+                        </h4>
+                      </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
       </div>
     </div>
