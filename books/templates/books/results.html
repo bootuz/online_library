@@ -1,27 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if results %}
-    {% for book in results %}
-        <p>{{ book.title }}</p>
-        {% for author in book.writer.all %}
-            <p>{{ author }}</p>
-        {% endfor %}
-        <p>{{ book.published }}</p>
-    {% endfor %}
+{% extends 'books/base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Тхылъхэр
+{% endblock %}
+{% block content %}
+    <body class="ecommerce-page sidebar-collapse">
 
-    <p>{{ q }}</p>
-    <p>{{ count }}</p>
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{% static 'img/book_shelves.jpeg' %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <form action="{% url 'books:search' %}" method="get">
+                        <div class="input-group has-white">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" style="color:white"></i>
+                                </span>
+                            </div>
+                            <input name="q" type="search" class="form-control" id="formControl" placeholder="Search here">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main main-raised">
+        <div class="section">
+            <div class="container">
+                {% if results %}
+                    <h2 class="section-title">Къэдгъуэтар</h2>
+                    <div class="row">
 
-{% elif results == None %}
-    <p>Specify your search term</p>
-{% else %}
-    {{ q }}
-    <p>Nothing found</p>
-{% endif %}
-</body>
-</html>
+                        {% for book in results %}
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card card-product">
+                                    <div class="card-header card-header-image">
+                                        <a href="{% url 'books:book' book.slug %}">
+                                            <img class="img" src="{{ book.cover.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-category text-success">{{ book.genre }}</h6>
+                                        <h4 class="card-title">
+                                            <a href=" {% url 'books:book' book.slug %}">{{ book.title }}</a>
+                                        </h4>
+                                        <div class="card-description">
+                                            {% for author in book.writer.all %}
+                                                {{ author.name }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% elif results == None %}
+                            <p>Узылъыхъуэр къыджепӏакъым</p>
+                        {% else %}
+                            <p>Зыри дгъуэтакъым, е тхылъым/тхакӏуэм и цӏэр пэжу иптхакъым</p>
+
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

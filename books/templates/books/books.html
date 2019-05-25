@@ -4,53 +4,52 @@
     Тхылъхэр
 {% endblock %}
 {% block content %}
-<body class="ecommerce-page sidebar-collapse">
-
-  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{% static 'img/book_shelves.jpeg' %}');">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto text-center">
-          <div class="brand">
-            <h1 class="title">Тхылъу диӏэу хъуар</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="main main-raised">
-    <div class="section">
-      <div class="container">
-        <h2 class="section-title">Тхылъхэр</h2>
-        <div class="row">
-        {% if all_books %}
-            {% for book in all_books %}
-            <div class="col-lg-3 col-md-6">
-                <div class="card card-product">
-                  <div class="card-header card-header-image">
-                    <a href="{% url 'books:book' book.slug %}">
-                      <img class="img" src="{{ book.cover.url }}">
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-category text-success">{{ book.genre }}</h6>
-                    <h4 class="card-title">
-                      <a href=" {% url 'books:book' book.slug %}">{{ book.title }}</a>
-                    </h4>
-                    <div class="card-description">
-                      {% for author in book.writer.all %}
-                        {{ author.name }}
-                      {% endfor %}
+    <body class="ecommerce-page sidebar-collapse">
+    <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('{% static 'img/book_shelves.jpeg' %}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <div class="brand">
+                        <h1 class="title">Тхылъу диӏэу хъуар</h1>
                     </div>
-                  </div>
                 </div>
             </div>
-            {% endfor %}
-        {% endif %}
-
-
         </div>
-      </div>
     </div>
+    <div class="main main-raised">
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">Тхылъхэр</h2>
+                <div class="row">
+                    {% if all_books %}
+                        {% for book in all_books %}
+                            <div class="col-lg-3 col-md-6">
+                                <div class="card card-product">
+                                    <div class="card-header card-header-image">
+                                        <a href="{% url 'books:book' book.slug %}">
+                                            <img class="img" src="{{ book.cover.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-category text-success">{{ book.genre }}</h6>
+                                        <h4 class="card-title">
+                                            <a href=" {% url 'books:book' book.slug %}">{{ book.title }}</a>
+                                        </h4>
+                                        <div class="card-description">
+                                            {% for author in book.writer.all %}
+                                                {{ author.name }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
     </div>
-</body>
+    </body>
 {% endblock %}
