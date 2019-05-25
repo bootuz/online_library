@@ -41,12 +41,12 @@
                                     </div>
                                     <div class="card-body">
                                         <h6 class="card-category text-success">{{ book.genre }}</h6>
-                                        <h4 class="card-title">
+                                        <h4 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                                             <a href=" {% url 'books:book' book.slug %}">{{ book.title }}</a>
                                         </h4>
                                         <div class="card-description">
                                             {% for author in book.writer.all %}
-                                                {{ author.name }}
+                                                <p style="margin-bottom: 0">{{ author.name }}</p>
                                             {% endfor %}
                                         </div>
                                     </div>
