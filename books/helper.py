@@ -10,4 +10,8 @@ def replacer(string, char='ӏ', to_be_replaced='iIlL1|'):
 
 
 def rename_and_path(instance, filename):
-    return f'books/{instance.slug.replace("-", "_")}/{filename}'
+    slug = instance.slug.replace("-", "_")
+    file_slug_name = filename.split(".")
+    file_slug_name[0] = slug
+    print(f'books/{slug}/{".".join(file_slug_name)}')
+    return f'books/{slug}/{".".join(file_slug_name)}'
