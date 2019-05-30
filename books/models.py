@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .helper import rename_and_path
+from PIL import Image
 
 
 class OverwriteStorage(FileSystemStorage):
@@ -29,6 +30,14 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.photo.path)
+
+        area = (0, 0, img.width, img.width)
+        img.crop(area).save(self.photo.path)
 
 
 class Genre(models.Model):
