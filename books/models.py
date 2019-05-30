@@ -34,10 +34,10 @@ class Author(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        img = Image.open(self.photo.path)
-
-        area = (0, 0, img.width, img.width)
-        img.crop(area).save(self.photo.path)
+        if self.photo.path:
+            img = Image.open(self.photo.path)
+            area = (0, 0, img.width, img.width)
+            img.crop(area).save(self.photo.path)
 
 
 class Genre(models.Model):
