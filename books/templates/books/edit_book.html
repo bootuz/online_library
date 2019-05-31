@@ -1,0 +1,44 @@
+{% extends 'books/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <body class="product-page sidebar-collapse">
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% static 'img/book.jpg' %}');">
+        <div class="container">
+            <div class="row title-row">
+                <div class="col-md-4 ml-auto">
+                    <button class="btn btn-white float-right" data-toggle="modal" data-target="#exampleModal"><i class="material-icons">search</i>Search<div class="ripple-container"></div></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="main main-raised main-product">
+
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                    <h3 class="title">Edit {{ book.title }} </h3>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <ul style="list-style: none; padding-left: 0;">
+                                {% for field in form %}
+                                    <li class="{% if field.errors %}has-danger{% endif %}" style="margin-bottom: 30px">
+                                        {#                                    {{ field.errors }}#}
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                        {% if field.errors %}
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

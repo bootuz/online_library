@@ -11,6 +11,13 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
+          <div class="follow">
+              <a href="{% url 'books:edit_author' slug=author.slug %}">
+              <button class="btn btn-fab btn-danger btn-round">
+                <i class="material-icons">edit</i>
+              <div class="ripple-container"></div></button>
+                  </a>
+            </div>
             <div class="profile">
               <div class="avatar">
                   {% if author.photo %}
@@ -26,8 +33,8 @@
             </div>
           </div>
         </div>
-{#        <div class="description text-center">#}
-{#          <p>{{ author.bio }}</p>#}
+{#        <div class="description text-left">#}
+{#          <p>{{ author.bio|linebreaksbr }}</p>#}
 {#        </div>#}
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
