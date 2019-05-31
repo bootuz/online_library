@@ -48,9 +48,9 @@
           </div>
         </div>
         <div class="tab-content tab-space">
-          <div class="tab-pane active text-center gallery" id="studio">
-            <div class="row">
-              {{ author.bio }}
+          <div class="tab-pane active text-left gallery" id="studio">
+            <div class="row" style="width: 80%;">
+              {{ author.bio|linebreaksbr }}
             </div>
           </div>
           <div class="tab-pane text-center gallery" id="books">
