@@ -2,6 +2,7 @@ import os
 
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from .helper import rename_and_path
 from PIL import Image
@@ -40,6 +41,9 @@ class Author(models.Model):
             img.crop(area).save(self.photo.path)
         except ValueError:
             pass
+
+    def get_absolute_url(self):
+        return reverse('books:author', args=[self.slug])
 
 
 class Genre(models.Model):
@@ -89,3 +93,6 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('books:book', args=[self.slug])

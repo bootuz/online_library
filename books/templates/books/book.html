@@ -34,19 +34,29 @@
             </div>
         </div>
         <div class="container">
-            <div class="main main-raised main-product">
+            <div class="main main-raised">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'books:edit_book' slug=book.slug %}" class="btn btn-fab btn-danger btn-round">
+                        <i class="material-icons">edit</i>
+                    </a>
+                {% endif %}
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="tab-content">
                             <div class="tab-pane active" id="product-page2">
-                                <img src="{{ book.cover.url }}">
+                                {% if book.cover %}
+                                    <img src="{{ book.cover.url }}">
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <h2 class="title"> {{ book.title }} </h2>
                         <h3 class="main-price">
-                            {{ book.writer.all|join:", " }}
+                            {% for author in book.writer.all %}
+                                <a href="{% url 'books:author' slug=author.slug %}">{{ author.name }}</a>
+                            {% endfor %}
+{#                            <a href="">{{ book.writer.all|join:", " }}</a>#}
                         </h3>
                         <div id="accordion" role="tablist">
                             <div class="card card-collapse">
@@ -100,7 +110,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row pull-right" style="margin-top: 10px;">
                             {% if book.e_pub %}
                                 <a href="{{ book.e_pub.url }}" class="btn btn-info btn-round">EPUB</a>

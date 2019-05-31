@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.utils import timezone
 
 import datetime
 
+from books.forms import BookEditForm, AuthorEditForm
 from .helper import replacer
 from .models import Book, Author
 
@@ -67,6 +70,42 @@ def book(request, slug):
         'book': one_book,
     }
     return render(request, 'books/book.html', context)
+
+
+@login_required
+def edit_book(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+    if request.method == "POST":
+        form = BookEditForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(book.get_absolute_url())
+    else:
+        form = BookEditForm(instance=book)
+
+    context = {
+        'form': form,
+        'book': book
+    }
+    return render(request, 'books/edit_book.html', context)
+
+
+@login_required
+def edit_author(request, slug):
+    author = get_object_or_404(Author, slug=slug)
+    if request.method == "POST":
+        form = AuthorEditForm(request.POST, request.FILES, instance=author)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(author.get_absolute_url())
+    else:
+        form = AuthorEditForm(instance=author)
+
+    context = {
+        'form': form,
+        'author': author
+    }
+    return render(request, 'books/edit_author.html', context)
 
 
 # Error handlers
