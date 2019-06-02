@@ -5,90 +5,93 @@
 {% endblock %}
 {% block content %}
     <body class="profile-page sidebar-collapse">
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% static 'img/features-5.jpg' %}');"></div>
-  <div class="main main-raised">
-    <div class="profile-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-          <div class="follow">
-              <a href="{% url 'books:edit_author' slug=author.slug %}">
-              <button class="btn btn-fab btn-danger btn-round">
-                <i class="material-icons">edit</i>
-              <div class="ripple-container"></div></button>
-                  </a>
-            </div>
-            <div class="profile">
-              <div class="avatar">
-                  {% if author.photo %}
-                      <img src="{{ author.photo.url }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                  {% else %}
-                      <img src="{% static 'img/faces/headshot-placeholder.png' %}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                  {% endif %}
-              </div>
-              <div class="name">
-                <h3 class="title">{{ author.name }}</h3>
-                <h6>({{ author.born_date }} - {{ author.death_date }})</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-{#        <div class="description text-left">#}
-{#          <p>{{ author.bio|linebreaksbr }}</p>#}
-{#        </div>#}
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile-tabs">
-              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                    <i class="material-icons">account_box</i> Биографие
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#books" role="tab" data-toggle="tab">
-                    <i class="material-icons">book</i> Тхылъхэр
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="tab-content tab-space">
-          <div class="tab-pane active text-left gallery" id="studio">
-            <div class="row" style="width: 80%;">
-              {{ author.bio|linebreaksbr }}
-            </div>
-          </div>
-          <div class="tab-pane text-center gallery" id="books">
-            <div class="row">
-              {% for book in books_of_author %}
-                  <div class="col-lg-3 col-md-6">
-                    <div class="card card-product">
-                      <div class="card-header card-header-image">
-                        <a href="{% url 'books:book' book.slug %}">
-                          <img class="img" src="{{ book.cover.url }}">
-                        </a>
-                      </div>
-                      <div class="card-body">
-                        <h6 class="card-category text-success">{{ book.genre }}</h6>
-                        <h4 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                          <a href=" {% url 'books:book' book.slug %}">{{ book.title }}</a>
-                        </h4>
-                        <div class="card-description">
-                          {% for author in book.writer.all %}
-                            <p style="margin-bottom: 0">{{ author.name }}</p>
-                          {% endfor %}
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% static 'img/features-5.jpg' %}');"></div>
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        {% if user.is_authenticated %}
+                            <div class="follow">
+                                <a href="{% url 'books:edit_author' slug=author.slug %}">
+                                    <button class="btn btn-fab btn-danger btn-round">
+                                        <i class="material-icons">edit</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="profile">
+                            <div class="avatar">
+                                {% if author.photo %}
+                                    <img src="{{ author.photo.url }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                {% else %}
+                                    <img src="{% static 'img/faces/headshot-placeholder.png' %}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                {% endif %}
+                            </div>
+                            <div class="name">
+                                <h3 class="title">{{ author.name }}</h3>
+                                <h6>({{ author.born_date }} - {{ author.death_date }})</h6>
+                            </div>
                         </div>
-                      </div>
                     </div>
                 </div>
-              {% endfor %}
+                {#        <div class="description text-left">#}
+                {#          <p>{{ author.bio|linebreaksbr }}</p>#}
+                {#        </div>#}
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                        <i class="material-icons">account_box</i> Биографие
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#books" role="tab" data-toggle="tab">
+                                        <i class="material-icons">book</i> Тхылъхэр
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content tab-space">
+                    <div class="tab-pane active text-left gallery" id="studio">
+                        <div class="row" style="width: 80%;">
+                            {{ author.bio|linebreaksbr }}
+                        </div>
+                    </div>
+                    <div class="tab-pane text-center gallery" id="books">
+                        <div class="row">
+                            {% for book in books_of_author %}
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card card-product">
+                                        <div class="card-header card-header-image">
+                                            <a href="{% url 'books:book' book.slug %}">
+                                                <img class="img" src="{{ book.cover.url }}">
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="card-category text-success">{{ book.genre }}</h6>
+                                            <h4 class="card-title" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                <a href=" {% url 'books:book' book.slug %}">{{ book.title }}</a>
+                                            </h4>
+                                            <div class="card-description">
+                                                {% for author in book.writer.all %}
+                                                    <p style="margin-bottom: 0">{{ author.name }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</body>
+    </body>
 {% endblock content %}
