@@ -9,3 +9,4 @@ media/
 static/
 books/migrations
 books/__init__.py
+library/__init__.py
