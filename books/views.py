@@ -74,36 +74,36 @@ def book(request, slug):
 
 @login_required
 def edit_book(request, slug):
-    book = get_object_or_404(Book, slug=slug)
+    one_book = get_object_or_404(Book, slug=slug)
     if request.method == "POST":
-        form = BookEditForm(request.POST, request.FILES, instance=book)
+        form = BookEditForm(request.POST, request.FILES, instance=one_book)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(book.get_absolute_url())
+            return HttpResponseRedirect(one_book.get_absolute_url())
     else:
-        form = BookEditForm(instance=book)
+        form = BookEditForm(instance=one_book)
 
     context = {
         'form': form,
-        'book': book
+        'book': one_book
     }
     return render(request, 'books/edit_book.html', context)
 
 
 @login_required
 def edit_author(request, slug):
-    author = get_object_or_404(Author, slug=slug)
+    one_author = get_object_or_404(Author, slug=slug)
     if request.method == "POST":
-        form = AuthorEditForm(request.POST, request.FILES, instance=author)
+        form = AuthorEditForm(request.POST, request.FILES, instance=one_author)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(author.get_absolute_url())
+            return HttpResponseRedirect(one_author.get_absolute_url())
     else:
-        form = AuthorEditForm(instance=author)
+        form = AuthorEditForm(instance=one_author)
 
     context = {
         'form': form,
-        'author': author
+        'author': one_author
     }
     return render(request, 'books/edit_author.html', context)
 
