@@ -65,7 +65,10 @@ def author(request, slug):
 
 def book(request, slug):
     one_book = get_object_or_404(Book, slug=slug)
-
+    if not request.session.get(str(one_book.id), False):
+        request.session[str(one_book.id)] = True
+        one_book.views += 1
+        one_book.save()
     context = {
         'book': one_book,
     }

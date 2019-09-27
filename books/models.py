@@ -85,6 +85,7 @@ class Book(models.Model):
     genre = models.ForeignKey(Genre, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Genre')
     writer = models.ManyToManyField(Author, blank=True, verbose_name='Author')
     date = models.DateTimeField(null=True, blank=True, auto_now_add=True, verbose_name='Date')
+    views = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = 'Book'
