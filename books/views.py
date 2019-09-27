@@ -69,6 +69,7 @@ def book(request, slug):
         request.session[str(one_book.id)] = True
         one_book.views_count += 1
         one_book.save()
+
     context = {
         'book': one_book,
     }
