@@ -11,4 +11,3 @@ books/migrations
 books/__init__.py
 library/__init__.py
 .env
-library/settings.py
