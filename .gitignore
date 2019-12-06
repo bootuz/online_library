@@ -11,4 +11,3 @@ books/__init__.py
 library/__init__.py
 .env
 library/db_name.txt
-library/settings.py
