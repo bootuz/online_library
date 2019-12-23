@@ -25,7 +25,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'www.baraeja.com']
+ALLOWED_HOSTS = ['astemir.pythonanywhere.com', '0.0.0.0', '127.0.0.1', 'www.baraeja.com']
 
 
 # Application definition
