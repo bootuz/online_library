@@ -1,1 +1,1 @@
-# baraeja.com - Circassian online library
+# Circassian online library
